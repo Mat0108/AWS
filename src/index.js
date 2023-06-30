@@ -3,12 +3,13 @@ const app     = express();
 const port    = 8080;
 const square = require("./lib/square")
 
+const routesAuth = require('./routes/auth');
 app.disable("x-powered-by")
 
 app.get('/', (req, res) => {
     res.send("hello world");
 });
-
+app.use('/api', routesAuth)
 app.get('/square/:nb', (req, res) => {
 	const nb = req.params.nb
 	res.send(square(parseInt(nb)).toString());
